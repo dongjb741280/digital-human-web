@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-digital-web
+  namespace: digitalhuman
+  labels:
+    app: ai-digital-web
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: ai-digital-web
+  template:
+    metadata:
+      labels:
+        app: ai-digital-web
+    spec:
+      containers:
+        - name: ai-digital-web
+          image: harbor.dcos.wuxi.unicom.local/digital-ccr/ai-digital-web
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "0.2"
+            limits:
+              memory: "2Gi"
+              cpu: "0.5"
+          ports:
+            - containerPort: 8081
+              name: ai-digital-web
+              protocol: TCP
+          env:
+            - name: TZ
+              value: "Asia/Shanghai"

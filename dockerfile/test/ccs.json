@@ -1,0 +1,89 @@
+{
+  "env": {
+    "PORTS": "8081:8081",
+    "TZ": "Asia/Shanghai"
+  },
+  "labels": {
+    "SPIDER_NET_VPC_NAME": "",
+    "SPIDER_NET_SUBNET": "spidernet",
+    "SPIDER_NET_IP_AUTO_ASSIGN": "true",
+    "SPIDER_NET_IP": "",
+    "SPIDER_NET_SECURITY_GROUP": "spidernetgroup-vpc18777frdhl001",
+    "SPIDER_NET_VPC": "vpc18777frdhl001",
+    "SPIDER_NET_SUBNET_NAME": ""
+  },
+  "id": "/gz-web",
+  "backoffFactor": 1.15,
+  "backoffSeconds": 1,
+  "container": {
+    "type": "DOCKER",
+    "volumes": [],
+    "docker": {
+      "parameters": [
+        {
+          "key": "volume",
+          "value": "/var/lib/lxc/:/var/lib/lxc/:shared"
+        },
+        {
+          "key": "volume",
+          "value": "/var/lib/lxc/lxcfs/proc/uptime:/proc/uptime"
+        },
+        {
+          "key": "volume",
+          "value": "/var/lib/lxc/lxcfs/proc/swaps:/proc/swaps"
+        },
+        {
+          "key": "volume",
+          "value": "/var/lib/lxc/lxcfs/proc/stat:/proc/stat"
+        },
+        {
+          "key": "volume",
+          "value": "/var/lib/lxc/lxcfs/proc/diskstats:/proc/diskstats"
+        },
+        {
+          "key": "volume",
+          "value": "/var/lib/lxc/lxcfs/proc/meminfo:/proc/meminfo"
+        },
+        {
+          "key": "volume",
+          "value": "/var/lib/lxc/lxcfs/proc/cpuinfo:/proc/cpuinfo"
+        },
+        {
+          "key": "add-host",
+          "value": "bucket-testjjsl.oss-cn-guangzhou-gz-d01-a.ops.super.guangzhou.unicom.local:10.242.0.95"
+        },
+        {
+          "key": "add-host",
+          "value": "bucket-prod-hlszwt.oss-cn-xian-unicom-d01-a.i.super.xixian.unicom.local:10.238.9.62"
+        }
+      ],
+      "image": "harbor.dcos.wuxi.unicom.local/img-freerdhl-jjsl/gz-web",
+      "forcePullImage": false,
+      "privileged": false
+    }
+  },
+  "cpus": 0.1,
+  "disk": 0,
+  "instances": 1,
+  "maxLaunchDelaySeconds": 3600,
+  "mem": 1024,
+  "gpus": 0,
+  "networks": [
+    {
+      "name": "spidernetgroup-vpc18777frdhl001",
+      "mode": "container"
+    }
+  ],
+  "requirePorts": false,
+  "upgradeStrategy": {
+    "maximumOverCapacity": 0,
+    "minimumHealthCapacity": 0
+  },
+  "killSelection": "YOUNGEST_FIRST",
+  "unreachableStrategy": {
+    "inactiveAfterSeconds": 0,
+    "expungeAfterSeconds": 0
+  },
+  "fetch": [],
+  "constraints": []
+}
