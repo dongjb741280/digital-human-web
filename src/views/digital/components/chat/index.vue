@@ -182,10 +182,10 @@ watch(() => isSending.value, (val) => {
                 <div class="w-full flex flex-wrap gap-1 pt-10px" v-if="item.btns && item.btns?.length > 0">
                   <template v-for="(btns, index1) in item.btns" :key="index1">
                     <div
-                      class="inline-flex items-center px-10px py-5px cursor-pointer border-solid line-height-normal border border-#255bda text-12px text-center align-middle ws-nowrap select-none rounded-16px bg-white text-#255bda hover:border-transparent hover:shadow-md"
+                      class="inline-flex items-center px-10px py-5px cursor-pointer border-solid line-height-normal border border-#3d6bff text-12px text-center align-middle ws-nowrap select-none rounded-16px bg-white text-#3d6bff hover:border-transparent hover:shadow-md"
                       @click="onBtnClick(btns)">
                       {{ btns.dataName }}
-                      <Icon v-if="btns.dataId === inputType" icon="system-uicons:check" :size="12" color="#255bda" />
+                      <Icon v-if="btns.dataId === inputType" icon="system-uicons:check" :size="12" color="#3d6bff" />
                     </div>
                   </template>
                 </div>
@@ -194,7 +194,7 @@ watch(() => isSending.value, (val) => {
                   v-if="item.lessonButtons && item.lessonButtons?.length > 0">
                   <template v-for="(lesson, index) in item.lessonButtons" :key="index">
                     <div
-                      class="inline-flex items-center px-10px py-5px cursor-pointer border-solid line-height-normal border border-#255bda text-12px text-center align-middle ws-nowrap select-none rounded-16px bg-white text-#255bda hover:border-transparent hover:shadow-md"
+                      class="inline-flex items-center px-10px py-5px cursor-pointer border-solid line-height-normal border border-#3d6bff text-12px text-center align-middle ws-nowrap select-none rounded-16px bg-white text-#3d6bff hover:border-transparent hover:shadow-md"
                       @click="onLessonButtonClick(lesson)">
                       {{ lesson.title }}
                     </div>
@@ -203,7 +203,7 @@ watch(() => isSending.value, (val) => {
                 <div class="rounded-lb-12px rounded-rb-12px mt--10px bg-white shadow-sm"
                   v-if="item.cards && item.cards?.length > 0">
                   <ol class="line-height-normal" style="margin-block: 10px">
-                    <li class="cursor-pointer text-size-14px text-#255bda p-5px" v-for="card in item.cards"
+                    <li class="cursor-pointer text-size-14px text-#3d6bff p-5px" v-for="card in item.cards"
                       :key="card.id" @click="onCardClick(card)">{{ card.title }}</li>
                   </ol>
                 </div>
@@ -213,14 +213,14 @@ watch(() => isSending.value, (val) => {
         </div>
         <!-- <div class="flex flex-row items-center">
           <div
-            class="ml-15px flex items-center bg-white rounded-full py-5px px-10px text-12px w-[fit-content] gap-5px cursor-pointer border-transparent border-solid border hover:border-#255bda"
+            class="ml-15px flex items-center bg-white rounded-full py-5px px-10px text-12px w-[fit-content] gap-5px cursor-pointer border-transparent border-solid border hover:border-#3d6bff"
             @click="onStopSpeech"
           >
-            <Icon class="color-#255bda" icon="pepicons-print:circle-big-circle-filled" :size="12" />
+            <Icon class="color-#3d6bff" icon="pepicons-print:circle-big-circle-filled" :size="12" />
             <span>停止播报</span>
           </div>
           <div
-            class="ml-15px flex items-center bg-white rounded-full py-8px px-10px text-12px w-[fit-content] gap-5px cursor-pointer border-transparent border-solid border hover:border-#255bda"
+            class="ml-15px flex items-center bg-white rounded-full py-8px px-10px text-12px w-[fit-content] gap-5px cursor-pointer border-transparent border-solid border hover:border-#3d6bff"
             @click="handoff"
             >场景切换</div
           >
@@ -230,15 +230,15 @@ watch(() => isSending.value, (val) => {
             <textarea v-model="inputmessage" @focus="handleInputFocus" @blur="handleInputBlur"
               @keydown.enter.prevent="handleSend"
               style="box-shadow: 0px 3px 8px 0px rgba(193, 225, 234, 0.5); border-radius: 8px;"
-              class="accent-#255bda box-border overflow-hidden outline-none resize-none border-none transition-border-color p-12px w-full flex-1 line-height-5 absolute"
+              class="accent-#3d6bff box-border overflow-hidden outline-none resize-none border-none transition-border-color p-12px w-full flex-1 line-height-5 absolute"
               type="text" :rows="1" placeholder="请输入您想咨询的内容"></textarea>
-            <div v-if="!isVoice" class="cursor-pointer  mr-10px" @click="handleSend" style="margin-left: auto;">
-              <img src="../../../../assets/images/plane.png" style="width: 22px;position: relative;margin-bottom: 3px;">
+            <div v-if="!isVoice" class="send-btn" @click="handleSend">
+              <Icon icon="svg-icon:dh-send" :size="18" color="#fff" />
             </div>
             <!-- <VoiceRecording @text="handleText" class="w-full h-full flex-1 absolute z-1" v-if="isVoice" /> -->
           </div>
           <!-- <Icon icon="material-symbols:keyboard" :size="24" /> -->
-          <!-- <div class="cursor-pointer color-#255bda mr-10px" @click="() => (isVoice = !isVoice)">
+          <!-- <div class="cursor-pointer color-#3d6bff mr-10px" @click="() => (isVoice = !isVoice)">
             <Icon v-if="!isVoice" icon="material-symbols:mic" :size="24" />
             <Icon v-else icon="material-symbols:keyboard" :size="24" />
           </div> -->
@@ -266,7 +266,7 @@ watch(() => isSending.value, (val) => {
     height: 8px;
     margin-left: 5px;
     border-radius: 50%;
-    background: #255bda;
+    background: #3d6bff;
     -webkit-animation: animate-typing-dot 0.9s linear infinite;
     animation: animate-typing-dot 0.9s linear infinite;
   }
@@ -401,7 +401,7 @@ watch(() => isSending.value, (val) => {
   }
 
   :deep(a) {
-    color: #255bda;
+    color: #3d6bff;
     text-decoration: none;
   }
 
@@ -427,8 +427,28 @@ watch(() => isSending.value, (val) => {
   }
 
   .bg-jianbian {
-    background: linear-gradient(90deg, rgba(121, 7, 252, 1) 0%, rgba(7, 82, 246, 1) 100%);
+    background: var(--dh-gradient);
+  }
 
+  .send-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    margin-left: auto;
+    margin-right: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    background: var(--dh-gradient);
+    box-shadow: var(--dh-shadow-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--dh-shadow-lg);
+    }
   }
 }
 </style>

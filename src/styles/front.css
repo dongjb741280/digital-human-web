@@ -1,0 +1,36 @@
+/* ============================================================
+ * 前台（数字人 H5 / 交互）设计规范 ——「极光 Aurora」
+ * 统一品牌色、渐变、圆角与阴影，供前台页面与组件引用。
+ * ============================================================ */
+
+:root {
+  /* 品牌主色 */
+  --dh-primary: #3d6bff;
+  --dh-primary-deep: #2a4fe0;
+  --dh-violet: #7b5cff;
+  --dh-cyan: #22c6ff;
+
+  /* 品牌渐变 */
+  --dh-gradient: linear-gradient(135deg, #7b5cff 0%, #3d6bff 48%, #22c6ff 100%);
+  --dh-gradient-soft: linear-gradient(160deg, #eef1ff 0%, #e8f6ff 100%);
+
+  /* 文字 */
+  --dh-text: #12224a;
+  --dh-text-secondary: #64748b;
+  --dh-text-inverse: #ffffff;
+
+  /* 背景 / 表面 */
+  --dh-bg: #f5f7ff;
+  --dh-surface: #ffffff;
+
+  /* 圆角 */
+  --dh-radius-sm: 10px;
+  --dh-radius-md: 16px;
+  --dh-radius-lg: 22px;
+  --dh-radius-full: 999px;
+
+  /* 阴影 */
+  --dh-shadow-sm: 0 2px 8px rgba(61, 107, 255, 0.1);
+  --dh-shadow-md: 0 6px 20px rgba(61, 107, 255, 0.16);
+  --dh-shadow-lg: 0 12px 32px rgba(61, 107, 255, 0.22);
+}

@@ -41,8 +41,8 @@ const Icon = svgUrl(props.icon)
       </div>
 
     </div>
-    <div class="flex-1">
-      <el-image :src="Icon" alt="Icon" />
+    <div class="flex-1 flex items-center justify-center">
+      <el-image :src="Icon" alt="Icon" class="w-48px h-48px" />
     </div>
   </div>
 </template>

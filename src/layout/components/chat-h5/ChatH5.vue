@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import InteractionH5 from '@/views/digital/interaction-h5.vue'
+import logo from '@/assets/imgs/logo.svg'
 defineOptions({
     name: 'ChatH5'
 })
@@ -27,13 +28,18 @@ const closeModal = () => {
 
 <template>
     <!-- 右下角浮动按钮 -->
-    <button class="floating-btn" @click="toggleModal"></button>
+    <button class="floating-btn" @click="toggleModal" aria-label="打开 AI 数字人助手">
+        <img class="floating-btn__logo" :src="logo" alt="AI 数字人" />
+    </button>
 
     <!-- 模态框 - 确保在最上层 -->
     <div class="modal-overlay" id="iframeModal" v-if="isModalVisible" @click="handleOverlayClick">
         <div class="modal-container">
             <div class="modal-header">
-                <h3 class="modal-title">AI数字人助手</h3>
+                <div class="modal-brand">
+                    <img class="modal-brand__logo" :src="logo" alt="AI 数字人" />
+                    <span class="modal-title">AI数字人助手</span>
+                </div>
                 <button class="close-btn" @click="toggleModal">×</button>
             </div>
             <div class="modal-body">
@@ -47,44 +53,42 @@ const closeModal = () => {
 </template>
 
 <style scoped>
-/* 浮动按钮样式保持不变 */
+/* 右下角品牌浮动按钮（使用新 logo） */
 .floating-btn {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
-    width: 53px;
-    height: 53px;
-    border-radius: 50%;
-    background: url(../../../views/h5/images/icon-add.png) no-repeat;
-    background: url(../../../assets/imgs/robot1.png) no-repeat;
-    background-size: 100% 100%;
-    color: white;
+    right: 28px;
+    bottom: 28px;
+    width: 56px;
+    height: 56px;
+    padding: 0;
     border: none;
-    font-size: 24px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
     cursor: pointer;
     z-index: 999;
-    /* 确保按钮在模态框之下 */
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    box-shadow: 0 8px 24px rgba(61, 107, 255, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-btn__logo {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    display: block;
+}
+
+.floating-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 12px 32px rgba(61, 107, 255, 0.45);
 }
 
 .pageContent {
-    background-image: linear-gradient(180deg,
-            #e7f0fe 0%,
-            #edf8fd 100%);
+    background: var(--dh-gradient-soft);
     padding: 0 12px;
     /* height: 100vh; */
     height: 600px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-}
-
-.floating-btn:hover {
-    transform: scale(1.1);
 }
 
 /* 模态框样式 - 确保在最上层 */
@@ -110,9 +114,9 @@ const closeModal = () => {
     width: 800px;
     /* width: 100%; */
     /* max-width: 800px; */
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 50px rgba(18, 34, 74, 0.25);
     animation: modalFadeIn 0.3s;
 }
 
@@ -129,33 +133,49 @@ const closeModal = () => {
 }
 
 .modal-header {
-    padding: 6px 20px;
-    background:rgb(232, 240 , 254);
+    padding: 12px 18px;
+    background: var(--dh-gradient);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.modal-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-brand__logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+}
+
 .modal-title {
     margin: 0;
-    font-size: 18px;
-    text-align: center;
-    width: 100%;
-    padding-left: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
 }
 
 .close-btn {
-    background: none;
+    background: rgba(255, 255, 255, 0.18);
     border: none;
-    font-size: 24px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-size: 20px;
     cursor: pointer;
-    color: #000;
+    color: #fff;
     padding: 0;
     line-height: 1;
+    transition: background 0.2s ease;
 }
 
 .close-btn:hover {
-    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.32);
+    opacity: 1;
 }
 
 .modal-body {

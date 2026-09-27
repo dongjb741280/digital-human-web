@@ -134,16 +134,16 @@ const handleEvent = (log) => {
 .live-tag {
   float: right;
   border-radius: 20px;
-  background-color: brown;
+  background-color: #ff4d4f;
   font-size: 12px;
-  padding: 2px 10px; 
+  padding: 2px 10px;
   margin-right: 5px;
   margin-top: 5px;
 }
 
 .live-num {
   float: right;
-  color: brown;
+  color: #ff4d4f;
   font-size: 11px;
   margin-right: 10px;
   margin-top: 5px;

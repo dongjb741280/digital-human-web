@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="AI 数字人">
+  <defs>
+    <linearGradient id="dh-logo-g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7B5CFF"/>
+      <stop offset="0.48" stop-color="#3D6BFF"/>
+      <stop offset="1" stop-color="#22C6FF"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="46" height="46" rx="13" fill="url(#dh-logo-g)"/>
+  <circle cx="24" cy="17" r="6.5" fill="#FFFFFF"/>
+  <path d="M9 40c0-9 6.7-15 15-15s15 6 15 15z" fill="#FFFFFF"/>
+  <path d="M36.5 6.5l1.1 2.9 2.9 1.1-2.9 1.1-1.1 2.9-1.1-2.9-2.9-1.1 2.9-1.1z" fill="#FFFFFF"/>
+</svg>

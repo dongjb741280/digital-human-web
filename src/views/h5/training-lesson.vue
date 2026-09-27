@@ -211,7 +211,7 @@ const more = () => {
             
             <img src="./images/icon-reset.png" class="refresh-icon" :class="{ 'rotating': isRotating }">
           </div>
-          <div style="color: #D71616;font-size: 13px; margin-left:auto;" @click="searchNotLearn">&#x24D8;<span style="margin-left: 4px;">{{ notLearnedCount }}个视频未学习</span></div>
+          <div style="color: #ef4444;font-size: 13px; margin-left:auto;" @click="searchNotLearn">&#x24D8;<span style="margin-left: 4px;">{{ notLearnedCount }}个视频未学习</span></div>
         </div>
       </div>
     </div>
@@ -220,7 +220,7 @@ const more = () => {
       <div style="margin:10px;padding-top: 93px;" >
         <VideoCard v-for="(item, index) in videoPageList" :key="index" :data="item" @refresh="getVideoPage"/>
         <div class="fixed-bottom" v-if="showMore">
-          <span style="display: inline-block;color: #ce6363;" @click="more">查看更多</span>
+          <span style="display: inline-block;color: var(--dh-primary);" @click="more">查看更多</span>
         </div>
       </div>
     </div>
@@ -242,7 +242,7 @@ $prefix-cls: #{$namespace}-layout;
 .page_container{
   height: calc(100vh - 90px);
   overflow-y: scroll;
-  background: #F6F8FA;
+  background: var(--dh-bg);
 }
 
 .fixed-top {
@@ -357,7 +357,7 @@ $prefix-cls: #{$namespace}-layout;
   vertical-align: top;
 }
 :deep(.grey .el-input__wrapper){
-  background: #F6F8FA;
+  background: var(--dh-bg);
   box-shadow: none;
   border-radius: 20px;
 }

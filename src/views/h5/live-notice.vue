@@ -147,7 +147,7 @@ const more = () => {
 <!-- :playback-rates="[0.7, 1.0, 1.5, 2.0]"         -->
 
 <template>
-  <div class="w-full page_container" v-loading="loading" style="background: #F6F8FA;">
+  <div class="w-full page_container" v-loading="loading" style="background: var(--dh-bg);">
     <div class="banner" v-if="Object.keys(liveNoticeInfo).length != 0">
       <img :src="liveNoticeInfo.videoCover" alt="" />
       <span class="interactive-text">{{ liveNoticeInfo.videoTitle }}</span>
@@ -163,7 +163,7 @@ const more = () => {
       </h1>
       <VideoCard v-for="(item, index) in liveVideoPageList" :key="index" :data="item" @refresh="getLiveVideoPage" />
       <div class="fixed-bottom" v-if="showMore">
-        <span style="display: inline-block;color: #ce6363;" @click="more">查看更多</span>
+        <span style="display: inline-block;color: var(--dh-primary);" @click="more">查看更多</span>
       </div>
     </div>
   </div>
@@ -234,7 +234,7 @@ const more = () => {
   transform: translate(-50%, -50%);
   font-weight: bold;
   text-align: center;
-  background: lightcoral;
+  background: #ff4d4f;
   padding: 4px 12px;
   font-size: 12px;
   border-radius: 2px;
@@ -260,8 +260,7 @@ const more = () => {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 8px 25px;
-  background-color: rgba(255, 116, 63, 1);
-  /* 半透明背景 */
+  background: var(--dh-gradient);
   color: white;
   text-align: center;
   text-decoration: none;

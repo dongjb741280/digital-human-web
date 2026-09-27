@@ -127,7 +127,7 @@ const toVideoPage = async (videoObj, type) => {
   position: absolute;
   background: #E0EDFF;
   padding: 4px 10px;
-  color: #1677FF;
+  color: var(--dh-primary);
   font-size: 12px;
   right: 0;
   top: 12px;
@@ -174,9 +174,9 @@ const toVideoPage = async (videoObj, type) => {
   margin-top: 15px;
 }
 .to_video{
-    color: #D71616;
+    color: var(--dh-primary);
     font-size: 14px;
- 
+
     display: flex;
     margin-top: 12px;
     align-items: center;
