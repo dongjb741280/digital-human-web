@@ -174,6 +174,17 @@ const remainingRouter: AppRouteRecordRaw[] = [
         }
       },
       {
+        path: '/digital/ppt-edit',
+        component: () => import('@/views/digital/ppt-edit.vue'),
+        name: '/digital/ppt-edit',
+        meta: {
+          title: 'PPT编辑',
+          icon: 'ep:home-filled',
+          noCache: false,
+          affix: false
+        }
+      },
+      {
         path: '/digital/traintext-prod',
         component: () => import('@/views/digital/traintext-prod.vue'),
         name: '/digital/traintext-prod',

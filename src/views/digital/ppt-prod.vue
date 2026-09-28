@@ -219,6 +219,10 @@ const goTextMgmt = () => {
   router.push('/digital/text-mgmt')
 }
 
+const goEdit = () => {
+  router.push({ path: '/digital/ppt-edit', query: { pptId: formModel.pptId } })
+}
+
 const onChange = (file: any) => {
   fileList.value = []
   if (file.status === 'ready') {
@@ -441,6 +445,7 @@ onMounted(async () => {
           <div class="ppt-actions">
             <el-button @click="activeStep = 3">更换模板</el-button>
             <el-button type="primary" :disabled="!formModel.pptId || loadingPpt" @click="onDownload">下载 PPT</el-button>
+            <el-button type="primary" plain :disabled="!formModel.pptId" @click="goEdit">编辑</el-button>
             <el-button :disabled="!formModel.pptId" @click="goTextMgmt">查看文案</el-button>
             <el-button @click="generatePpt" :disabled="loadingPpt">重新生成</el-button>
           </div>

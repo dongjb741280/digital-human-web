@@ -143,6 +143,20 @@ export const createPPT = async (data) => {
 }
 
 /**
+ * 保存 PPT 编辑结果（每页 fabric 画布 JSON）
+ */
+export const savePptEdit = async (data) => {
+  return await request.post({ url: `${prefix}/aiDhPpt/save_ppt_edit`, data })
+}
+
+/**
+ * 按 fabric 画布 JSON 重新生成 pptx
+ */
+export const regeneratePpt = async (data) => {
+  return await request.post({ url: `${prefix}/aiDhPpt/regenerate_ppt`, data, timeout: 0 })
+}
+
+/**
  * 获取Agent
  */
 export const getAgentList = async () => {
