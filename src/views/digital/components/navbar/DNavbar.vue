@@ -51,6 +51,17 @@ const menus = [
         path: '/digital/text-prod'
       })
     }
+  },
+  {
+    id: 'menu-5',
+    title: 'PPT制作',
+    desc: 'AI 生成漂亮 PPT',
+    icon: 'digital-menu-5',
+    onClick: () => {
+      router.push({
+        path: '/digital/ppt-prod'
+      })
+    }
   }
 ]
 </script>
