@@ -322,6 +322,11 @@ onMounted(async () => {
       const res = await getPPTThumbnailList({ pptId: pptId.value })
       if (res && res.length) {
         pages.value = res.map((item: any) => {
+          // 编辑态（fabric 元素 JSON）优先，未编辑才从语义态解析 title/bullets
+          const elements = item.ppt_slide_elements
+          if (elements) {
+            return { title: '', bullets: [], bgColor: '#ffffff', json: elements, thumb: item.ppt_image_url || '' }
+          }
           let title = ''
           let bullets: string[] = []
           try {
