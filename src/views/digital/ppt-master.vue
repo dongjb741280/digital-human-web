@@ -20,6 +20,15 @@ const formModel = reactive({
   template: ''
 })
 
+// 模版下拉选项（友好名称 → 引擎内的模版工作区路径）
+const templateOptions = [
+  { label: '自由设计（默认）', value: '' },
+  { label: '通用母版 16:9（presentation_core）', value: 'skills/ppt-master/templates/layouts/presentation_core' },
+  { label: '通用母版 4:3（presentation_core_43）', value: 'skills/ppt-master/templates/layouts/presentation_core_43' },
+  { label: '中国电信 品牌模版', value: 'skills/ppt-master/templates/decks/中国电信' },
+  { label: '中汽研 品牌模版', value: 'skills/ppt-master/templates/decks/中汽研' }
+]
+
 const loadingPpt = ref(false)
 const pollTimer = ref<any>(null)
 const jobStatus = ref('')
@@ -199,11 +208,15 @@ const onDownload = async () => {
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item label="模板（可选）">
-                <el-input
-                  v-model="formModel.template"
-                  placeholder="模板工作区根路径，留空走自由设计"
-                />
+              <el-form-item label="模板">
+                <el-select v-model="formModel.template" clearable placeholder="自由设计（默认）" class="w-full">
+                  <el-option
+                    v-for="t in templateOptions"
+                    :key="t.value"
+                    :value="t.value"
+                    :label="t.label"
+                  />
+                </el-select>
               </el-form-item>
             </el-col>
           </el-row>
