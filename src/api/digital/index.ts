@@ -143,10 +143,17 @@ export const createPPT = async (data) => {
 }
 
 /**
- * ppt-master 引擎生成PPT（一键直出：主题/页数/素材/模板）
+ * ppt-master 引擎生成PPT（异步提交，立即返回 jobId）
  */
 export const createPptMaster = async (data) => {
-  return await request.post({ url: `${prefix}/aiDhPpt/generate_ppt_master`, data, timeout: 0 })
+  return await request.post({ url: `${prefix}/aiDhPpt/generate_ppt_master/submit`, data })
+}
+
+/**
+ * ppt-master 任务状态查询（queued/running/success/failed）
+ */
+export const getPptMasterStatus = async (jobId) => {
+  return await request.get({ url: `${prefix}/aiDhPpt/generate_ppt_master/status/${jobId}` })
 }
 
 /**

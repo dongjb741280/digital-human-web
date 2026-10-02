@@ -1,6 +1,6 @@
 <!--ppt-master 引擎生成 PPT（一键直出原生可编辑 .pptx，对接 /aiDhPpt/generate_ppt_master）-->
 <script lang="ts" setup>
-import { createPptMaster, getPPTThumbnailList, downloadPPT } from '@/api/digital'
+import { createPptMaster, getPptMasterStatus, getPPTThumbnailList, downloadPPT } from '@/api/digital'
 import { ElMessage } from 'element-plus'
 import { Loading } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
@@ -21,6 +21,9 @@ const formModel = reactive({
 })
 
 const loadingPpt = ref(false)
+const pollTimer = ref<any>(null)
+const jobStatus = ref('')
+const progress = ref<any>(null)
 
 const pptId = ref('')
 const recordDesc = ref('')
@@ -32,12 +35,53 @@ const selectedThumb = ref<any>(null)
 
 const uid = () => String(userStore.getUser.id)
 
+const stopPolling = () => {
+  if (pollTimer.value) {
+    clearInterval(pollTimer.value)
+    pollTimer.value = null
+  }
+}
+
+const pollStatus = async (jobId: string) => {
+  try {
+    const res = await getPptMasterStatus(jobId)
+    if (!res) return
+    jobStatus.value = res.status
+    progress.value = res.progress
+    if (res.status === 'success') {
+      stopPolling()
+      loadingPpt.value = false
+      if (res.pptId) {
+        pptId.value = res.pptId
+        recordDesc.value = res.recordDesc || formModel.title
+        summary.value = res.summary || ''
+        ElMessage.success('PPT 生成成功')
+        await loadThumbnails()
+      } else {
+        ElMessage.warning('生成成功但未返回 pptId')
+      }
+    } else if (res.status === 'failed') {
+      stopPolling()
+      loadingPpt.value = false
+      ElMessage.error(res.msg || '生成失败')
+    }
+  } catch (error) {
+    console.error(error)
+    stopPolling()
+    loadingPpt.value = false
+    ElMessage.error('查询任务状态失败')
+  }
+}
+
 const generate = async () => {
   if (!formModel.title.trim()) {
     ElMessage.warning('请输入主题')
     return
   }
+  stopPolling()
   loadingPpt.value = true
+  jobStatus.value = ''
+  progress.value = null
   pptId.value = ''
   recordDesc.value = ''
   summary.value = ''
@@ -59,22 +103,22 @@ const generate = async () => {
       doc_name: formModel.title,
       user: uid()
     })
-    if (resp && resp.pptId) {
-      pptId.value = resp.pptId
-      recordDesc.value = resp.recordDesc || formModel.title
-      summary.value = resp.summary || ''
-      ElMessage.success('PPT 生成成功')
-      await loadThumbnails()
+    if (resp && resp.jobId) {
+      jobStatus.value = 'queued'
+      pollTimer.value = setInterval(() => pollStatus(resp.jobId), 3000)
+      pollStatus(resp.jobId)
     } else {
-      ElMessage.warning('PPT 生成未返回结果')
+      loadingPpt.value = false
+      ElMessage.warning('提交未返回 jobId')
     }
   } catch (error) {
     console.error(error)
-    ElMessage.error('生成 PPT 失败')
-  } finally {
     loadingPpt.value = false
+    ElMessage.error('提交失败')
   }
 }
+
+onBeforeUnmount(() => stopPolling())
 
 const loadThumbnails = async () => {
   if (!pptId.value) return
@@ -183,6 +227,7 @@ const onDownload = async () => {
       <div v-if="loadingPpt" class="generating">
         <el-icon class="is-loading" style="font-size: 28px"><Loading /></el-icon>
         <p>正在生成 PPT，通常需要几分钟，请稍后...</p>
+        <p v-if="progress && progress.turn" class="progress-hint">已进行 {{ progress.turn }} 轮</p>
       </div>
 
       <div v-else-if="pptId" class="result-panel">
@@ -262,6 +307,11 @@ const onDownload = async () => {
   padding: 80px 0;
   color: #909399;
   gap: 12px;
+}
+
+.progress-hint {
+  font-size: 12px;
+  color: #c0c4cc;
 }
 
 .result-panel {
