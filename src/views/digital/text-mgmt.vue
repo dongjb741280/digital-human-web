@@ -70,6 +70,10 @@ const openForm = (item: any) => {
   editRef.value.open(item)
 }
 
+const goEditPpt = (item: any) => {
+  router.push({ path: '/digital/ppt-collabora', query: { pptId: item.mainPptId } })
+}
+
 // 监听
 watch(radioValue, (newVal) => {
   getList()
@@ -122,6 +126,9 @@ onMounted(() => {
       <template #action="{ row }">
         <el-button link type="primary" @click="openForm(row)">
           编辑
+        </el-button>
+        <el-button v-if="row.mainPptId" link type="primary" @click="goEditPpt(row)">
+          编辑PPT
         </el-button>
         <el-button link type="primary" @click="handleDetail(row.id)">
           详情

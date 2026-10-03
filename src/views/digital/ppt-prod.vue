@@ -220,7 +220,7 @@ const goTextMgmt = () => {
 }
 
 const goEdit = () => {
-  router.push({ path: '/digital/ppt-edit', query: { pptId: formModel.pptId } })
+  router.push({ path: '/digital/ppt-collabora', query: { pptId: formModel.pptId } })
 }
 
 const onChange = (file: any) => {

@@ -9,6 +9,7 @@ import download from '@/utils/download'
 defineOptions({ name: 'PptMaster' })
 
 const userStore = useUserStore()
+const router = useRouter()
 
 const formModel = reactive({
   title: '',
@@ -159,6 +160,14 @@ const onDownload = async () => {
     ElMessage.error('下载失败')
   }
 }
+
+const goEdit = () => {
+  if (!pptId.value) {
+    ElMessage.warning('请先生成 PPT')
+    return
+  }
+  router.push({ path: '/digital/ppt-collabora', query: { pptId: pptId.value } })
+}
 </script>
 
 <template>
@@ -247,6 +256,7 @@ const onDownload = async () => {
         <div class="ppt-toolbar">
           <div class="ppt-actions">
             <el-button type="primary" @click="onDownload">下载 PPT</el-button>
+            <el-button type="primary" plain @click="goEdit">编辑</el-button>
             <el-button @click="generate">重新生成</el-button>
           </div>
           <div v-if="summary" class="ppt-summary">{{ summary }}</div>

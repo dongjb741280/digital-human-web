@@ -171,6 +171,20 @@ export const regeneratePpt = async (data) => {
 }
 
 /**
+ * 打开 Collabora 在线编辑（返回 wopiSrc/accessToken/fileId）
+ */
+export const openPptEdit = async (data) => {
+  return await request.post({ url: `${prefix}/aiDhPpt/open_edit`, data })
+}
+
+/**
+ * 重新生成 PPT 预览图（Collabora 编辑保存后调用）
+ */
+export const renderPreview = async (data) => {
+  return await request.post({ url: `${prefix}/aiDhPpt/render_preview`, data, timeout: 0 })
+}
+
+/**
  * 获取Agent
  */
 export const getAgentList = async () => {

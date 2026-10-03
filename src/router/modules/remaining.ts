@@ -196,6 +196,17 @@ const remainingRouter: AppRouteRecordRaw[] = [
         }
       },
       {
+        path: '/digital/ppt-collabora',
+        component: () => import('@/views/digital/ppt-collabora.vue'),
+        name: '/digital/ppt-collabora',
+        meta: {
+          title: 'PPT在线编辑',
+          icon: 'ep:home-filled',
+          noCache: false,
+          affix: false
+        }
+      },
+      {
         path: '/digital/traintext-prod',
         component: () => import('@/views/digital/traintext-prod.vue'),
         name: '/digital/traintext-prod',
