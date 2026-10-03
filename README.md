@@ -13,7 +13,7 @@ AI 数字人 Web 前端项目（应用标题：**AI 能力视界**），基于 [
 | 数字人管理 | 数字人形象的创建与管理（`CreateDigitalAvatar`） |
 | 声音管理 / 声音制作 | 声音克隆与声音资产管理 |
 | 文案制作 / 文案管理 | 文案的 AI 生成、编辑与管理，支持 PPT 大纲生成 |
-| PPT 制作 / ppt-master | PPT 一键生成：`ppt-prod`（9 版式向导）+ `ppt-master`（原生可编辑 .pptx，菜单「ppt-master」） |
+| PPT 制作 / ppt-master | PPT 一键生成：`ppt-prod`（9 版式向导）+ `ppt-master`（原生可编辑 .pptx，菜单「ppt-master」）；三处（制作页 / 文案列表 / ppt-master）均支持 **Collabora 在线编辑**（`ppt-collabora` 全屏页内嵌 CODE） |
 | 数字人互动 | 基于 WebRTC + 流式对话（SSE）的实时数字人互动（含 H5 端） |
 | 直播 | 数字人直播的列表、详情与观看 |
 | AI 训练视频 | AI 训练视频的详情、基础信息、视频与观看记录 |
