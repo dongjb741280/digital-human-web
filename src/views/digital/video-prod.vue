@@ -132,7 +132,7 @@ const onItemClick = (item: any) => {
       delete: false,
       type: 'image'
     })
-    if (formData.videoName === '未命名草稿' && item.copywriteTitle) {
+    if (item.copywriteTitle) {
       formData.videoName = item.copywriteTitle
       videoName.value = item.copywriteTitle
     }
