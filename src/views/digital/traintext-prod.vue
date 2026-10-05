@@ -133,7 +133,8 @@ const submitForm = async (type) => {
       ElMessage.success('制作成功')
       emits('getpptInfo',{
         pptId: resp.pptId,
-        copyrightId:  resp.mainPPtId
+        copyrightId:  resp.mainPPtId,
+        pptName: formModel.title
       })
       resultsRef.value?.success()
       // router.push('/digital/text-mgmt')

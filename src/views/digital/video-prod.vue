@@ -7,7 +7,7 @@ import { DSideBarPane, StageView, LayersBox, ThumbnailList, VoiceModal } from '.
 import { getTextManageListPage, getFirstPptImageByCopywriteId } from "@/api/digital";
 const props = withDefaults(defineProps<{
   soureType?: string
-  pptInfo?: { pptId?: string; copyrightId?: string }
+  pptInfo?: { pptId?: string; copyrightId?: string; pptName?: string }
 }>(), {
   soureType: '1',
   pptInfo: undefined
@@ -452,6 +452,16 @@ onMounted(async () => {
     }
   }
 })
+// PPT 名称回填为视频默认名（仍可在名称弹窗中修改）
+watch(
+  () => pptInfo.value?.pptName,
+  (name) => {
+    if (name && formData.videoName === '未命名草稿') {
+      formData.videoName = name
+      videoName.value = name
+    }
+  }
+)
 watch(
   () => formData.isHuman,
   (newVal) => {
