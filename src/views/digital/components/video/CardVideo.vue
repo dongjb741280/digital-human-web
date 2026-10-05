@@ -3,6 +3,7 @@
 import {getAccessToken, getTenantId} from '@/utils/auth'
 import {shallowRef} from 'vue';
 import {ElMessage, ElMessageBox} from 'element-plus'
+import { Loading } from '@element-plus/icons-vue'
 import 'video.js/dist/video-js.css'
 import {VideoPlayer} from '@videojs-player/vue'
 import {MoreView} from '../'
@@ -207,11 +208,20 @@ const handleEvent = (payload) => {
         :options="{ userActions: { doubleClick: true } }"
         :controlBar="{ children: [{ name: 'PlayToggle' }, { name: 'progressControl' }]}"
         disablePictureInPicture />
-      <el-image
-v-else :src="data.firstFrame"
-                class="w-150px h-100px shadow-sm" fit="contain" alt="">
-        <template #error></template>
-      </el-image>
+      <div v-else class="w-150px h-100px shadow-sm flex items-center justify-center bg-white">
+        <el-icon v-if="data.videoStatus === '2'" class="is-loading text-size-30px text-#409eff">
+          <Loading />
+        </el-icon>
+        <el-image
+          v-else
+          :src="data.firstFrame"
+          class="w-150px h-100px"
+          fit="contain"
+          alt=""
+        >
+          <template #error></template>
+        </el-image>
+      </div>
       <div
         class="absolute bottom-5px  right-3px rounded-10px text-#D7D7D7 text-size-10px w-fit pl-5px pr-5px "
         style="background-color: rgba(2, 167, 240, 0.45098039215686275);">
