@@ -125,6 +125,14 @@ watchEffect(() => {
 
 const show = ref(false);
 
+// 点击播放：弹出播放框
+const playVisible = ref(false);
+const onPlay = () => {
+  if (porps.data.videoStatus === '4' && porps.data.videoUrl) {
+    playVisible.value = true;
+  }
+};
+
 const player = shallowRef<any>(null);
 const handleMounted = (payload) => {
   player.value = payload.player
@@ -186,7 +194,7 @@ const handleEvent = (payload) => {
 <template>
   <div
     class=" bg-#F3FAFD border border-solid border-gray-100 w-150px rounded-4px overflow-hidden shadow-sm transition-all duration-200 ease-in-out hover:shadow-lg">
-    <div class="relative bg-white" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+    <div class="relative bg-white" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @click="onPlay">
       <VideoPlayer
         v-if="show"
         :key="data.id"
@@ -243,6 +251,22 @@ v-if="data.videoStatus !== '4'"
       </div>
       <MoreView :data="moreData"/>
     </div>
+
+    <el-dialog v-model="playVisible" :title="data.videoName" width="720px" destroy-on-close append-to-body>
+      <VideoPlayer
+        v-if="playVisible"
+        :id="'dialog-' + data.id"
+        :poster="data.firstFrame"
+        class="video-player vjs-big-play-centered"
+        crossorigin="anonymous"
+        :volume="0.5"
+        :sources="[{ src: data.videoUrl, type: 'video/mp4' }]"
+        :playback-rates="[0.7, 1.0, 1.5, 2.0]"
+        :autoplay="true"
+        controls
+        :options="{ fluid: true }"
+        disablePictureInPicture />
+    </el-dialog>
   </div>
 </template>
 <style lang="scss" scoped>
