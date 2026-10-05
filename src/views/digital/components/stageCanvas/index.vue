@@ -507,26 +507,9 @@ const createImage = async (config: ImageConfig) => {
         opacity: config.opacity ?? 1
       }
       if (!config.scale || !config.scale.x || !config.scale.y) {
-        let scaleX = wh.width / imageObj.width
-        let scaleY = wh.height / imageObj.height
-        let scale = Math.min(scaleX, scaleY)
-        if (scale < 0.8) {
-          scale = 0.8
-        } else if (scale > 1) {
-          scale = 1
-          scaleX = 1
-          scaleY = 1
-        }
-        merge.scale = {
-          x: scaleX * scale,
-          y: scaleY * scale
-        }
-        // 保持原图片比例
-        if (merge.scale.x < merge.scale.y) {
-          merge.scale.y = merge.scale.x
-        } else {
-          merge.scale.x = merge.scale.y
-        }
+        // 等比缩放使图片完整容纳在画布内；16:9 图片在 16:9 画布上即铺满
+        let scale = Math.min(wh.width / imageObj.width, wh.height / imageObj.height)
+        merge.scale = { x: scale, y: scale }
       }
       let imageLayer = new Konva.Image(merge)
       layerView?.add(imageLayer)

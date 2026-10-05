@@ -167,7 +167,7 @@ onMounted(async () => {
   >
     <div class="flex gap-4 h-full">
       <div
-        class="flex-1 min-h[calc(100vh-180px)] p-20px border border-solid border-coolgray-100 rounded-2 shadow-sm"
+        class="flex-1 min-h-[calc(100vh_-_180px)] p-20px border border-solid border-coolgray-100 rounded-2 shadow-sm"
       >
         <el-form-item prop="doc_name" label="文案名称">
           <el-input v-model="formModel.doc_name" placeholder="请输入文案名称" />
@@ -260,7 +260,7 @@ onMounted(async () => {
         </el-form-item>
       </div>
       <div
-        class="flex-1 min-h[calc(100vh-180px)] p-20px border border-solid border-coolgray-100 rounded-2 shadow-sm"
+        class="flex-1 min-h-[calc(100vh_-_180px)] p-20px border border-solid border-coolgray-100 rounded-2 shadow-sm"
       >
         <div class="flex justify-between pb-15px">
           <span class="text-size-14px text-#606266">文案内容</span>

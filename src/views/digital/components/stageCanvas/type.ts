@@ -3,6 +3,7 @@ export type Layer = {
   name: layerType
   type: string
   src: string
+  title?: string
   delete?: boolean
   x?: number
   y?: number

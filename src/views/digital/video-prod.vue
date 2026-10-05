@@ -40,6 +40,7 @@ const opacity = ref(100)
 const currentLayerName = ref<string>()
 const router = useRouter()
 const layers = ref<Layer[]>([])
+const selectedVoiceName = ref('')
 const speedFactor = ref(1.0)
 const loadingVoice = ref(false)
 // 图层类型：1-数字人，2-前景，3-PPT，4-对话Agent，5-互动画布容器
@@ -71,6 +72,9 @@ const pushLayers = (layer: Layer) => {
     curData.visible = layer.visible
     curData.opacity = layer.opacity
     curData.id = layer.id;
+    if (layer.title !== undefined) {
+      curData.title = layer.title
+    }
     if (layer.name === 'BackGround') {
       stageView.value?.setBackground(layer)
       return
@@ -112,6 +116,10 @@ const delLayer = (item: Layer) => {
     layers.value.splice(index, 1)
   }
 }
+const delVoice = () => {
+  formData.voiceId = ''
+  selectedVoiceName.value = ''
+}
 const onItemClick = (item: any) => {
   if (item.copywriteId) {
     formData.copywriteId = item.copywriteId
@@ -120,6 +128,7 @@ const onItemClick = (item: any) => {
       id: item.copywriteId,
       src: item.imageUrl,
       name: 'PPT',
+      title: item.copywriteTitle,
       delete: false,
       type: 'image'
     })
@@ -128,13 +137,17 @@ const onItemClick = (item: any) => {
   console.log('formData', formData)
   console.log('item', item)
   if (item.copywritePptId) formData.copywritePptId = item.copywritePptId
-  if (item.voiceId) formData.voiceId = item.voiceId
+  if (item.voiceId) {
+    formData.voiceId = item.voiceId
+    selectedVoiceName.value = item.voiceName || ''
+  }
   if (item.humanId) {
     formData.humanId = item.humanId
     pushLayers({
       id: item.humanId,
       src: item.humanImageUrl,
       name: 'Human',
+      title: item.humanName,
       delete: false,
       type: 'image'
     })
@@ -145,6 +158,7 @@ const onItemClick = (item: any) => {
       id: item.backImgId,
       src: item.src,
       name: 'BackGround',
+      title: item.name,
       delete: false,
       type: item.type === 'image' ? 'image' : 'video'
     })
@@ -165,6 +179,7 @@ const onItemClick = (item: any) => {
       id: item.materialId,
       src: item.url,
       name: `${name}-${countNum}`,
+      title: item.name,
       delete: false,
       type: item.type === 'image' ? 'image' : 'video'
     })
@@ -566,8 +581,10 @@ watch(
         <LayersBox
           class="flex-1"
           v-model:layers="layers"
+          :voice-name="selectedVoiceName"
           @on-item-click="onLayerItemClick"
           @on-item-del="delLayer"
+          @on-voice-del="delVoice"
           @change="onLayerChange"
         />
       </div>

@@ -9,16 +9,21 @@ import {
   VideoPlay,
   Avatar,
   Tickets,
-  Lock
+  Lock,
+  Microphone
 } from '@element-plus/icons-vue'
 defineOptions({
   name: 'LayersBox'
 })
-const emit = defineEmits(['onItemClick', 'onItemDel', 'update:layers', 'change'])
+const emit = defineEmits(['onItemClick', 'onItemDel', 'update:layers', 'change', 'onVoiceDel'])
 const props = defineProps({
   layers: {
     type: Array<Layer>,
     default: () => []
+  },
+  voiceName: {
+    type: String,
+    default: ''
   }
 })
 
@@ -81,6 +86,9 @@ const handleDelete = (item) => {
   emit('onItemDel', item)
   dragLayers.value.splice(dragLayers.value.indexOf(item), 1)
 }
+const handleVoiceDel = () => {
+  emit('onVoiceDel')
+}
 const getLayerName = (type: layerType) => {
   if (type === 'Human') {
     return '数字人'
@@ -107,11 +115,11 @@ const getLayerName = (type: layerType) => {
       class="w-full h-[40px] line-height-40px color-coolGray text-size-18px flex items-center justify-between rounded-6px border border-solid border-coolGray-200 cursor-not-allowed"
       v-if="layerBgView"
     >
-      <span class="flex items-center gap-10px ml-12px">
+      <span class="flex items-center gap-10px ml-12px min-w-0 flex-1">
         <el-icon class="text-size-24px">
           <PictureFilled />
         </el-icon>
-        <span class="text-size-16px select-none">{{ getLayerName(layerBgView.name) }}</span>
+        <span class="text-size-16px select-none truncate">{{ getLayerName(layerBgView.name) }}{{ layerBgView.title ? `：${layerBgView.title}` : '' }}</span>
       </span>
       <span>
         <el-icon>
@@ -121,6 +129,20 @@ const getLayerName = (type: layerType) => {
           <Delete />
         </el-icon>
       </span>
+    </div>
+    <div
+      class="w-full h-[40px] line-height-40px color-coolGray text-size-18px flex items-center justify-between rounded-6px border border-solid border-#409eff bg-#ecf5ff"
+      v-if="voiceName"
+    >
+      <span class="flex items-center gap-10px ml-12px min-w-0">
+        <el-icon class="text-size-24px">
+          <Microphone />
+        </el-icon>
+        <span class="text-size-16px select-none truncate">声音：{{ voiceName }}</span>
+      </span>
+      <el-icon @click="handleVoiceDel" class="mr-10px cursor-pointer shrink-0">
+        <Delete />
+      </el-icon>
     </div>
     <TransitionGroup name="list" tag="div" class="w-full flex flex-col gap-10px">
       <div
@@ -134,7 +156,7 @@ const getLayerName = (type: layerType) => {
         @dragend="dragend($event, i)"
         @dragover="dragover"
       >
-        <span class="flex items-center gap-10px ml-12px">
+        <span class="flex items-center gap-10px ml-12px min-w-0 flex-1">
           <el-icon class="text-size-24px">
             <Avatar v-if="item.name === 'Human'" />
             <Files v-if="item.name === 'PPT'" />
@@ -143,7 +165,7 @@ const getLayerName = (type: layerType) => {
             <VideoPlay v-if="item.name.includes('Video')" />
             <Picture v-if="item.name.includes('Image')" />
           </el-icon>
-          <span class="text-size-16px select-none">{{ getLayerName(item.name) }}</span>
+          <span class="text-size-16px select-none truncate">{{ getLayerName(item.name) }}{{ item.title ? `：${item.title}` : '' }}</span>
         </span>
         <el-icon @click="handleDelete(item)" class="mr-10px cursor-pointer">
           <Delete />

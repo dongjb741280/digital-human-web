@@ -144,7 +144,7 @@ const onItemClick = (item: any) => {
           </el-radio-group>
           <component
             :is="item.component" :type="types[item.id]" @on-click="onItemClick" :className="item?.className" :pptId="props.pptId"
-            :align="item?.align" class="!h-[calc(100vh-220px)] !w-full overflow-y-auto custom-scroll-bar" :id="data[item.id]" :status="item?.status" :showSearch="item?.showSearch" isMobile/>
+            :align="item?.align" class="!h-[calc(100vh_-_220px)] !w-full overflow-y-auto custom-scroll-bar" :id="data[item.id]" :status="item?.status" :showSearch="item?.showSearch" isMobile/>
         </div>
       </template>
     </div>

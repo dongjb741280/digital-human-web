@@ -55,7 +55,8 @@ const onItemClick = (item: bgItem) => {
   emit('onClick', {
     backImgId: item.uid,
     src: item.url,
-    type: activeTab.value
+    type: activeTab.value,
+    name: item.name
   })
 }
 const uploadProgress = ref(0)

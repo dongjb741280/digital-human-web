@@ -135,9 +135,15 @@ const moreData = [
 
 <template>
   <div
-    class="relative flex items-center gap-2 bg-white border border-solid border-gray-100 p-4 rounded-2 shadow-sm transition-all duration-200 ease-in-out hover:shadow-lg"
-    :class="isSelected ? '!border-#409eff' : ''"
+    class="relative flex items-center gap-2 border border-solid border-gray-100 p-4 rounded-2 shadow-sm transition-all duration-200 ease-in-out hover:shadow-lg"
+    :class="isSelected ? '!border-#409eff !bg-#ecf5ff' : 'bg-white'"
   >
+    <div
+      v-if="isSelected"
+      class="absolute top-8px left-8px w-20px h-20px rounded-full bg-#409eff flex items-center justify-center z-10"
+    >
+      <Icon icon="system-uicons:check" :size="12" color="#fff" />
+    </div>
     <el-image :src="iconUrl" class="w-25%" />
     <div class="flex flex-col gap-2">
       <div class="text-#666666 truncate w-full">{{ data.voiceName }}</div>

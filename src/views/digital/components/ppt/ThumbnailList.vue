@@ -60,7 +60,7 @@ const selectThumbnail = (item: ThumbnailItem) => {
 
 <template>
   <div
-    class="flex flex-col gap-1 w-full p-2 mt-2 bg-white overflow-hidden overflow-y-auto h-[calc(100vh-400px)] custom-scroll-bar rounded-2 box-border"
+    class="flex flex-col gap-1 w-full p-2 mt-2 bg-white overflow-x-hidden overflow-y-auto h-[calc(100vh_-_400px)] custom-scroll-bar rounded-2 box-border"
   >
     <div v-for="(item, index) in thumbnails" :key="item.id" class="flex items-center mb-2">
       <span class="mr-2 text-sm text-gray-500">{{ index + 1 }}</span>
