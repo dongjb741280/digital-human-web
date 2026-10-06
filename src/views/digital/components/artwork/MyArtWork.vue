@@ -23,11 +23,9 @@ const onMore = () => {
 </script>
 
 <template>
-  <div class="flex justify-between mt-10px">
+  <div class="flex justify-between items-center mt-20px mb-16px">
     <div class="flex items-center flex-row">
-      <div
-        class="h-21px relative layout-border__left color-#666666 fw-600 !before:w-1 !before:bg-#409eff m-10px pl-2 mt-20px mb-20px w-fit">
-        我的作品</div>
+      <div class="dh-section-title">我的作品</div>
       <el-tabs
         v-model="tabsVModel"
         class="ml-20px h-28px"

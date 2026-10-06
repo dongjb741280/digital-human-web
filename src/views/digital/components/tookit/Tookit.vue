@@ -64,10 +64,8 @@ const tabsVModel = ref('video')
 </script>
 
 <template>
-  <div
-    class="relative layout-border__left color-#666666 fw-600 !before:w-1 !before:bg-#409eff m-10px pl-2 mt-20px mb-20px flex flex-row items-center"
-  >
-    AI创意工具
+  <div class="flex items-center mt-20px mb-16px">
+    <div class="dh-section-title">AI创意工具</div>
     <el-tabs
       v-model="tabsVModel"
       class="ml-20px h-28px"
@@ -78,15 +76,62 @@ const tabsVModel = ref('video')
     </el-tabs>
   </div>
 
-  <div class="flex flex-wrap gap-5">
+  <div class="flex flex-wrap gap-4">
     <template v-for="(tool, index) in tools[tabsVModel]" :key="index">
-      <div
-        class="flex items-center w-250px h-50px bg-#F3FAFD border border-solid border-gray-100 rounded-2 pl-2 shadow-sm hover:border-#409eff"
-        @click="onClick(tool)"
-      >
-        <img :src="svgUrl(tool.icon)" class="w-40px h-40px" />
-        <div class="w-full text-center font-600 text-16px text-#333333">{{ tool.name }}</div>
+      <div class="dh-tool-card" @click="onClick(tool)">
+        <div class="tool-icon">
+          <img :src="svgUrl(tool.icon)" class="tool-icon-img" />
+        </div>
+        <div class="tool-name">{{ tool.name }}</div>
       </div>
     </template>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.dh-tool-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 250px;
+  height: 56px;
+  padding: 0 16px;
+  background: var(--dh-surface, #fff);
+  border: 1px solid var(--el-border-color-lighter, #eef0f5);
+  border-radius: var(--dh-radius-sm, 10px);
+  box-shadow: var(--dh-shadow-sm);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.dh-tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--dh-shadow-md);
+  border-color: var(--dh-primary, #3d6bff);
+}
+
+.tool-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--dh-gradient-soft);
+}
+
+.tool-icon-img {
+  width: 22px;
+  height: 22px;
+}
+
+.tool-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dh-text, #12224a);
+}
+</style>

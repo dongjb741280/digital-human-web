@@ -53,3 +53,27 @@
   box-shadow: 0 12px 24px -8px rgba(16, 24, 40, 0.16);
   border-color: var(--el-color-primary-light-7, #d8dbf3);
 }
+
+/* 分区标题：渐变竖条 + 深色标题（极光品牌） */
+.dh-section-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 22px;
+  padding-left: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--dh-text, #12224a);
+}
+
+.dh-section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 16px;
+  border-radius: 2px;
+  background: var(--dh-gradient);
+}
