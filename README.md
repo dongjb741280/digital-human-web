@@ -1,6 +1,6 @@
 # digital-human-web
 
-AI 数字人 Web 前端项目（应用标题：**AI 能力视界**），基于 [vue-element-plus-admin](https://gitee.com/kailong110120130/vue-element-plus-admin) / [芋道（yudao）](https://github.com/YunaiV/ruoyi-vue-pro) 中后台模板二次开发，面向数字人内容生产场景，提供数字人形象、声音、文案、视频的「制作 - 管理 - 互动 - 直播」全链路能力。
+AI 数字人 Web 前端项目（应用标题：**AI 数字人**），基于 [vue-element-plus-admin](https://gitee.com/kailong110120130/vue-element-plus-admin) / [芋道（yudao）](https://github.com/YunaiV/ruoyi-vue-pro) 中后台模板二次开发，面向数字人内容生产场景，提供数字人形象、声音、文案、视频的「制作 - 管理 - 互动 - 直播」全链路能力。
 
 ## 功能特性
 
