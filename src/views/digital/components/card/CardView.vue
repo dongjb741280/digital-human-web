@@ -126,8 +126,8 @@ const moreData = [
 
 <template>
   <div
-    class="relative w-160px h-auto bg-white border border-solid border-gray-100 rounded-2 shadow-sm transition-all duration-200 ease-in-out hover:shadow-lg overflow-hidden"
-    :class="isSelected ? '!border-#409eff' : 'border-gray-100'"
+    class="relative w-160px h-auto bg-white dh-card"
+    :class="isSelected ? '!border-#409eff' : ''"
   >
     <span
       v-if="showAction"

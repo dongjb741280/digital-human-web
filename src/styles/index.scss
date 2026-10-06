@@ -35,3 +35,21 @@
     border-left-color: var(--el-color-primary);
   }
 }
+
+/* 统一卡片：圆角 + 阴影 + 悬浮微交互（背景由各卡片用 bg-* 自行指定） */
+.dh-card {
+  border-radius: 12px;
+  border: 1px solid var(--el-border-color-light, #e5e6eb);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  overflow: hidden;
+}
+
+.dh-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(16, 24, 40, 0.16);
+  border-color: var(--el-color-primary-light-7, #d8dbf3);
+}

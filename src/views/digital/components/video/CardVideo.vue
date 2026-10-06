@@ -193,7 +193,7 @@ const handleEvent = (payload) => {
 
 <template>
   <div
-    class=" bg-#F3FAFD border border-solid border-gray-100 w-150px rounded-4px overflow-hidden shadow-sm transition-all duration-200 ease-in-out hover:shadow-lg">
+    class=" bg-#F3FAFD dh-card w-150px">
     <div class="relative bg-white" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @click="onPlay">
       <VideoPlayer
         v-if="show"
